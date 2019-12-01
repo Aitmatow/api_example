@@ -3,6 +3,7 @@ from datetime import datetime
 # Create your views here.
 
 from django.http import HttpResponse, JsonResponse
+from django.shortcuts import render, render_to_response
 from django.views.decorators.csrf import csrf_exempt
 
 
@@ -25,10 +26,9 @@ def api_example(request, *args, **kwargs):
 @csrf_exempt
 def add(request, *args, **kwargs):
     if request.method == 'POST':
+        print(request.body)
         if request.body:
             product_data = json.loads(request.body)
-            a = product_data.get('A')
-            b=product_data.get('B')
             try:
                 a = int(product_data.get('A'))
                 b = int(product_data.get('B'))
@@ -41,14 +41,13 @@ def add(request, *args, **kwargs):
             response = JsonResponse({'error' : 'No data provided'})
             response.status_code = 400
             return response
+    return render_to_response('index.html')
 
 @csrf_exempt
 def substract(request, *args, **kwargs):
     if request.method == 'POST':
         if request.body:
             product_data = json.loads(request.body)
-            a = product_data.get('A')
-            b=product_data.get('B')
             try:
                 a = int(product_data.get('A'))
                 b = int(product_data.get('B'))
@@ -61,6 +60,7 @@ def substract(request, *args, **kwargs):
             response = JsonResponse({'error' : 'No data provided'})
             response.status_code = 400
             return response
+    return render_to_response('index.html')
 
 
 @csrf_exempt
@@ -68,8 +68,6 @@ def multiply(request, *args, **kwargs):
     if request.method == 'POST':
         if request.body:
             product_data = json.loads(request.body)
-            a = product_data.get('A')
-            b=product_data.get('B')
             try:
                 a = int(product_data.get('A'))
                 b = int(product_data.get('B'))
@@ -82,15 +80,13 @@ def multiply(request, *args, **kwargs):
             response = JsonResponse({'error' : 'No data provided'})
             response.status_code = 400
             return response
-
+    return render_to_response('index.html')
 
 @csrf_exempt
 def divide(request, *args, **kwargs):
     if request.method == 'POST':
         if request.body:
             product_data = json.loads(request.body)
-            a = product_data.get('A')
-            b=product_data.get('B')
             try:
                 a = int(product_data.get('A'))
                 b = int(product_data.get('B'))
@@ -111,3 +107,11 @@ def divide(request, *args, **kwargs):
             response = JsonResponse({'error' : 'No data provided'})
             response.status_code = 400
             return response
+    return render_to_response('index.html')
+
+@csrf_exempt
+def index(request, *args, **kwargs):
+    print(request.body)
+    return render(request, 'index.html', {})
+
+
