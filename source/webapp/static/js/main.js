@@ -1,8 +1,7 @@
 $(document).ready(function () {
-    container = $('.container')
+    let container = $('.container');
     container.append(
-        `
-    <form method="post">
+        `<form method="post">
     <p class="text-center font-italic" style="font-size: 40px">Calculate</p>
     <p>Введите А <input name="a" id="a"></p>
     <p>Введите B <input name="b" id="b"></p>
@@ -18,8 +17,8 @@ $(document).ready(function () {
 });
 
 function math(elem) {
-    a = document.getElementById('a');
-    b = document.getElementById('b');
+    let a = document.getElementById('a');
+    let b = document.getElementById('b');
     let ajax = $.ajax({
       type: "POST",
       url: "http://localhost:8000/" + $(elem).data('id'),
@@ -30,12 +29,12 @@ function math(elem) {
       dataType:'json',
       contentType:'json',
       success: function (data) {
-        answer = $('.answer')
-          answer.html(`<p> ${data.answer}  </p>`)
+        let answer = $('.answer');
+        answer.html(`<p> ${data.answer}  </p>`)
       },
       error: function (data) {
-        answer = $('.answer')
-          answer.html(`<p style="color: red"> ${data.responseJSON.error}  </p>`)
+        let answer = $('.answer');
+        answer.html(`<p style="color: red"> ${data.responseJSON.error}</p>`)
       },
 
     });
