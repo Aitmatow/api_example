@@ -1,6 +1,22 @@
-function hello() {
-    console.log('Tratata')
-}
+$(document).ready(function () {
+    container = $('.container')
+    container.append(
+        `
+    <form method="post">
+    <p class="text-center font-italic" style="font-size: 40px">Calculate</p>
+    <p>Введите А <input name="a" id="a"></p>
+    <p>Введите B <input name="b" id="b"></p>
+    <a class="btn btn-success" onclick="add()">+</a>
+    <a class="btn btn-success" onclick="substract()">-</a>
+    <a class="btn btn-success" onclick="multiply()">*</a>
+    <a class="btn btn-success" onclick="divide()">/</a>
+         <p>Ответ:</p>
+    <div class="answer">
+
+    </div>
+    </form>`
+    )
+});
 
 function add() {
     a = document.getElementById('a');
@@ -97,3 +113,4 @@ function divide() {
 
     });
 }
+
